@@ -1,7 +1,4 @@
 <?php
-include('conexion.php');
-$con=conectar();
-
 $idReservacion=$_REQUEST['IDRESERVACION'];
 $idCobro=$_REQUEST['IDCOBRO'];
 $idPersona=$_REQUEST['IDPERSONA'];
@@ -11,6 +8,9 @@ $idPeriodoReserva=$_REQUEST['IDPERIODORESERVA'];
 $idHorario=$_REQUEST['IDHORARIO'];
 $idLocal=$_REQUEST['IDLOCAL'];
 $fechaRegistro=$_REQUEST['FECHAREGISTRO'];
+
+include('conexion.php');
+$con=conectar();
 
 $servidor="localhost";
 $usuario="id19008253_grupo10";
