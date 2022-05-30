@@ -1,12 +1,15 @@
 <?php
-$idlocal = $_REQUEST['idlocal'];
-$idhorario = $_REQUEST['idhorario'];
-$disponibilidad = $_REQUEST['disponibilidad'];
+$year = $_REQUEST['year'];
+$month = $_REQUEST['month'];
+$day = $_REQUEST['day'];
 include('conexion.php');
 $con = conectar();
-$sql = "UPDATE horarioslocales SET disponibilidad = '$disponibilidad' WHERE idhorario = '$idhorario' AND idlocal = '$idlocal'";
+$sql = "SELECT * FROM horarioslocales WHERE fecha_modificado>'" . $year . "-" . $month . "-" . $day . "'";
 $resultado = mysqli_query($con, $sql) or die(mysqli_error($con));
-if (mysqli_affected_rows($con) == 1)
-    $respuesta = array('resultado' => 1);
-echo json_encode($respuesta);
-$con->close();
+$filas = array();
+while ($reg = mysqli_fetch_assoc($resultado)) {
+    $filas[] = $reg;
+}
+
+echo json_encode($filas);
+mysqli_close($con);
