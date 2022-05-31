@@ -4,12 +4,12 @@ $month = $_REQUEST['month'];
 $day = $_REQUEST['day'];
 include('conexion.php');
 $con = conectar();
-$sql = "SELECT * FROM horarioslocales WHERE fecha_modificado>'" . $year . "-" . $month . "-" . $day . "'";
-$resultado = mysqli_query($con, $sql) or die(mysqli_error($con));
+$sql = "SELECT * FROM HORARIOSLOCALES WHERE fecha_modificado>'" . $year . "-" . $month . "-" . $day . "'";
+$resultado = mysql_query($sql) or die(mysql_error());
 $filas = array();
-while ($reg = mysqli_fetch_assoc($resultado)) {
+while ($reg = mysql_fetch_assoc($resultado)) {
     $filas[] = $reg;
 }
 
 echo json_encode($filas);
-mysqli_close($con);
+mysql_close($con);
