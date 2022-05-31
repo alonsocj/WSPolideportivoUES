@@ -7,9 +7,9 @@ $cantidadautorizada = $_REQUEST['cantidadautorizada'];
 include('conexion.php');
 $con = conectar();
 
-$sql = "INSERT INTO evento (idevento, idtipoe, nomevento, costoevento, cantidadautorizada) VALUES ('$idevento', '$idtipoe', '$nomevento', '$costoevento', '$cantidadautorizada')";
-$resultado = mysqli_query($con, $sql) or die(mysqli_error($con));
-if (mysqli_affected_rows($con) == 1)
+$sql = "INSERT INTO EVENTO (IDEVENTO, IDTIPOE, NOMEVENTO, COSTOEVENTO, CANTIDADAUTORIZADA) VALUES ('$idevento', '$idtipoe', '$nomevento', '$costoevento', '$cantidadautorizada')";
+$resultado = mysql_query($sql) or die(mysql_error());
+if (mysql_affected_rows() == 1)
     $respuesta = array('resultado' => 1);
 echo json_encode($respuesta);
-$con->close();
+mysql_close($con);
